@@ -199,11 +199,11 @@ var SkyRTC = function() {
         });
 
         this.on('_new_peer', function(data) {
-            // that.connections.push(data.from);
-            // that.createPeerConnection(data.from);
+             that.connections.push(data.from);
+            that.createPeerConnection(data.from);
 			
-            // var pc = that.peerConnections[data.from];
-			// pc.addStream(that.localMediaStream)
+            var pc = that.peerConnections[data.from];
+             pc.addStream(that.localMediaStream)
             that.emit('new_peer', data.from);
 		});
 

@@ -3,6 +3,62 @@ var app = express();
 var server = require('http').createServer(app);
 var SkyRTC = require('skyrtc').listen(server);
 var path = require("path");
+var request = require("request");
+
+var mysql = require('mysql');
+var unserialize = require('locutus/php/var/unserialize');
+
+
+var url = "http://realusionapi.87vr.com/session_info.php?id=05l5rvjurialsidqv9064tfbq6";
+request(
+    {
+        method: 'GET',
+        uri: url,
+    },
+    function(error, response, body){
+    //    console.log('server encoded the data as: ' + (response.headers['content-encoding'] || 'identity'));
+    //    console.log('the decoded data is: '+body);
+    }
+).on('data', function(data){
+    console.log('decoded chunk: ' + data);
+});
+//var connection = mysql.createConnection({
+//    host: 'rdsmcaz1q7ij010idl7kpublic.mysql.rds.aliyuncs.com',
+//    user: 'realusion',
+//    password: 'A1@3785abc9#1',
+//    port: '3306',
+//});
+//
+//connection.connect(function(error){
+//    if(error)
+//    {
+//        console.log('[query] - :' + error);
+//        return;
+//    }
+//    console.log('[connection connect] succeed!');
+//});
+//
+//connection.query("select * from vcdata_session.realusion_session where sSessionKey = '05l5rvjurialsidqv9064tfbq6' ", function(err, rows, fields){
+//    if(err){
+//        console.log('[query] - :' + err)
+//    }
+//    var sValue = rows[0].sSessionValue;
+//    var sValueObj = unserialize(sValue);
+//  //      console.log('aa'+sValueObj);
+//    //var mIdx = sValueObj.gr_member_idx;
+//
+//    console.log('The sSessionValue is: ', sValue);
+//    //console.log('member idx: : ', mIdx);
+//    
+//});
+//
+//connection.end(function(err){
+//    if(err)
+//    {
+//        return;
+//    }
+//    console.log('[connection end] succeed!');
+//});
 
 var port = process.env.PORT || 3000;
 server.listen(port);
